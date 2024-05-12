@@ -7,6 +7,7 @@ using store_ms_ux.insfrastructure.data.repositories;
 using store_ms_ux.insfrastructure.data.repositories.Categorias;
 using store_ms_ux.insfrastructure.data.repositories.Factura;
 using store_ms_ux.insfrastructure.data.repositories.Productos;
+using store_ms_ux.insfrastructure.data.repositories.ReporteDownload;
 using store_ms_ux.insfrastructure.data.repositories.Usuario;
 using store_mx_us.application.interfaces.repositories;
 using System;
@@ -25,6 +26,7 @@ namespace store_ms_ux.insfrastructure.ioc
             services.AddScoped<ICategoria, CategoriaRepository>();
             services.AddScoped<IProducto, ProductoRepository>();
             services.AddScoped<IFactura, FacturaRepository>();
+            services.AddScoped<IReporte, ReporteDownloadRepository>();
 
             var builderConnection = new NpgsqlConnectionStringBuilder(configuration.GetConnectionString("defaultConnection"));
 
