@@ -15,12 +15,13 @@ namespace store_ms_ux.api.Controllers
         }
         [HttpPost]
         [Route("store/Factura/CrearFactura")]
-        public async Task<List<FacturaDTO>> CrearFactura()
+        public async Task<ActionResult> CrearFactura(FacturaDTO factura)
         {
             try
             {
-                var response = await _facturaRepository.CrearFactura();
-                return (response);
+                var response = await _facturaRepository.CrearFactura(factura);
+                //return (response);
+                return Ok(response);
             }
             catch (Exception ex)
             {

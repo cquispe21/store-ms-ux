@@ -10,9 +10,9 @@ namespace store_mx_ux.domain.DTOs.Usuario
     public class CredencialesUsuarioDTO
     {
         [Required]
-        public string Email { get; set; }
+        public string? Email { get; set; }
         [Required]
-        public string Nombres { get; set; }
+        public string? Nombres { get; set; }
   
     }
 }

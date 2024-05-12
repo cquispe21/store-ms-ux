@@ -11,13 +11,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using store_mx_ux.domain.DTOs.Factura;
+using store_ms_ux.insfrastructure.data.repositories.Categorias;
 
 namespace store_ms_ux.insfrastructure.data.repositories.Factura
 {
     public class FacturaRepository : IFactura
     {
         private readonly StoreDbContext _dataContext;
-        private ILogger<UsuarioRepository> _logger;
+        private ILogger<FacturaRepository> _logger;
 
         public FacturaRepository(ILogger<FacturaRepository> logger, StoreDbContext dataContext)
         {
