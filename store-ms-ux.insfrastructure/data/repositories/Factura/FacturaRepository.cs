@@ -30,9 +30,6 @@ namespace store_ms_ux.insfrastructure.data.repositories.Factura
         {
             try
             {
-             
-
-
                 _dataContext.Add(factura);
                 await _dataContext.SaveChangesAsync();
                 return new CrearResponse();
