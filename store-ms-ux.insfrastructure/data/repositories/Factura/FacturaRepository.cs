@@ -25,20 +25,48 @@ namespace store_ms_ux.insfrastructure.data.repositories.Factura
             _dataContext = dataContext ?? throw new ArgumentNullException(nameof(dataContext));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-       
-        public virtual async Task<CrearResponse> CrearFactura(FacturaDTO factura)
+
+        public virtual async Task<CrearResponse> CrearFactura(NuevaFacturaDTO factura)
         {
             try
             {
-                _dataContext.Add(factura);
-                await _dataContext.SaveChangesAsync();
-                return new CrearResponse();
+                var setFactura = new FacturaDbContext
+                {
+                    Idfactura = factura.IdFactura,
+                    Idusuario = factura.IdUsuario,
+                    Correo = factura.Correo,
+                    Direcion = factura.Direccion,
+                    Razonsocial = factura.RazonSocial,
+                    Totalimporte = factura.TotalImporte,
+                };
 
+                _dataContext.Facturas.Add(setFactura);
+
+               
+
+                foreach (var detallefactura in factura.DetalleFactura)
+                {
+                    var detalleFacturaSet = new Detallefactura
+                    {
+                        Iddetallefactura = detallefactura.IdDetalleFactura,
+                        Cantidad = detallefactura.Cantidad,
+                        Descripcionproducto = detallefactura.DescripcionProducto,
+                        Nombreproducto = detallefactura.NombreProducto,
+                        Idfactura = detallefactura.IdFactura,
+                        Preciounitario = detallefactura.PrecioUnitario
+                    };
+                    _dataContext.Detallefacturas.Add(detalleFacturaSet);
+                }
+
+                await _dataContext.SaveChangesAsync();
+
+                return new CrearResponse();
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
+
     }
 }

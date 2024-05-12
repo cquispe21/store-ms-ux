@@ -10,7 +10,7 @@ namespace store_ms_ux.domain.entities
         public string? Nombres { get; set; }
         public string? Email { get; set; }
         public DateTime? FechaCreacion { get; set; }
-        public virtual ICollection<Factura>? Facturas { get; set; }
+        public virtual ICollection<FacturaDbContext>? Facturas { get; set; }
 
     }
 }

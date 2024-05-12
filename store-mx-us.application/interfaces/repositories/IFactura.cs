@@ -11,6 +11,6 @@ namespace store_mx_us.application.interfaces.repositories
 {
     public interface IFactura
     {
-        Task<CrearResponse> CrearFactura(FacturaDTO factura);
+        Task<CrearResponse> CrearFactura(NuevaFacturaDTO factura);
     }
 }

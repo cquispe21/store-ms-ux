@@ -19,7 +19,7 @@ namespace store_ms_ux.insfrastructure.CarpetaModels
 
         public virtual DbSet<Categoria> Categorias { get; set; } = null!;
         public virtual DbSet<Detallefactura> Detallefacturas { get; set; } = null!;
-        public virtual DbSet<Factura> Facturas { get; set; } = null!;
+        public virtual DbSet<FacturaDbContext> Facturas { get; set; } = null!;
         public virtual DbSet<Producto> Productos { get; set; } = null!;
         public virtual DbSet<UsuarioDBContext> Usuarios { get; set; } = null!;
 
@@ -85,7 +85,7 @@ namespace store_ms_ux.insfrastructure.CarpetaModels
                     .HasConstraintName("detallefactura_idfactura_fkey");
             });
 
-            modelBuilder.Entity<Factura>(entity =>
+            modelBuilder.Entity<FacturaDbContext>(entity =>
             {
                 entity.HasKey(e => e.Idfactura)
                     .HasName("facturas_pkey");

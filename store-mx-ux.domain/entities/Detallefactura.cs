@@ -12,6 +12,6 @@ namespace store_ms_ux.domain.entities
         public int? Cantidad { get; set; }
         public decimal? Preciounitario { get; set; }
 
-        public virtual Factura? IdfacturaNavigation { get; set; }
+        public virtual FacturaDbContext? IdfacturaNavigation { get; set; }
     }
 }

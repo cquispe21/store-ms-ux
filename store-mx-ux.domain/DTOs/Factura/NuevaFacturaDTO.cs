@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace store_mx_ux.domain.DTOs.Factura
 {
-    public class FacturaDTO
+    public class NuevaFacturaDTO
     {
         public Guid IdFactura { get; set; }
         public Guid IdUsuario { get; set; }

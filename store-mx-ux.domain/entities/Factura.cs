@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace store_ms_ux.domain.entities
 {
-    public partial class Factura
+    public partial class FacturaDbContext
     {
-        public Factura()
+        public FacturaDbContext()
         {
             Detallefacturas = new HashSet<Detallefactura>();
         }
