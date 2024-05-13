@@ -191,9 +191,9 @@ namespace store_ms_ux.insfrastructure.CarpetaModels
                     .HasColumnName("fecha_creacion")
                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                entity.Property(e => e.Nombres)
+                entity.Property(e => e.Clave)
                     .HasMaxLength(100)
-                    .HasColumnName("nombres");
+                    .HasColumnName("clave");
 
                 entity.Property(e => e.Username)
                     .HasMaxLength(100)

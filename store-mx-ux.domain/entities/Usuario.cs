@@ -7,7 +7,7 @@ namespace store_ms_ux.domain.entities
     {
         public Guid IdUsuario { get; set; }
         public string? Username { get; set; }
-        public string? Nombres { get; set; }
+        public string? Clave { get; set; }
         public string? Email { get; set; }
         public DateTime? FechaCreacion { get; set; }
         public virtual ICollection<FacturaDbContext>? Facturas { get; set; }

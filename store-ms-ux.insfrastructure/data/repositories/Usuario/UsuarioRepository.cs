@@ -32,7 +32,7 @@ namespace store_ms_ux.insfrastructure.data.repositories.Usuario
                     IdUsuario = u.IdUsuario,
                     Email = u.Email,
                     FechaCreacion = u.FechaCreacion,
-                    Nombres = u.Nombres,
+                    Clave = u.Clave,
                     Username = u.Username,
                 }
                 ).ToListAsync();
@@ -53,7 +53,7 @@ namespace store_ms_ux.insfrastructure.data.repositories.Usuario
                     Email = usuario.Email,
                     FechaCreacion = DateTime.Now,
                     IdUsuario = usuario.IdUsuario,
-                    Nombres = usuario.Nombres,
+                    Clave = usuario.Clave,
                     Username = usuario.Username,
 
                 };
