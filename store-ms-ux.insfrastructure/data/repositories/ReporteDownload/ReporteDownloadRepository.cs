@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using store_ms_ux.insfrastructure.CarpetaModels;
 using store_ms_ux.insfrastructure.data.repositories.Productos;
 using store_mx_us.application.interfaces.repositories;
+using store_mx_ux.domain.DTOs.Factura;
 using store_mx_ux.domain.DTOs.ReporteDownload;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace store_ms_ux.insfrastructure.data.repositories.ReporteDownload
 
         }
 
-        public async Task<Stream> ReporteDownload(ReporteDownloadDTO reporteDownloadDTO)
+        public async Task<string> ReporteDownload(NuevaFacturaDTO reporteDownloadDTO)
         {
             var urlride = _configuracion.GetConnectionString("GenerarPDF");
             using HttpClient Cliente = new();
@@ -47,22 +48,11 @@ namespace store_ms_ux.insfrastructure.data.repositories.ReporteDownload
 
             };
             var Response = await Cliente.SendAsync(Request);
+            string base64String = await Response.Content.ReadAsStringAsync();
 
-            if (Response.IsSuccessStatusCode)
-            {
-                byte[] contenidoPDF = await Response.Content.ReadAsByteArrayAsync();
-                Stream stream = new MemoryStream(contenidoPDF);
-                return stream;
-                // Crear un MemoryStream a partir de los datos del PDF
-                //string base64String = Convert.ToBase64String(contenidoPDF);
+         
+            return base64String;
 
-                //return base64String;
-            }
-            else
-            {
-                // Manejar el caso en que la solicitud no fue exitosa
-                throw new Exception("La solicitud al servicio PDF no fue exitosa");
-            }
         }
     }
 

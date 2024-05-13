@@ -28,5 +28,20 @@ namespace store_ms_ux.api.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("store/Producto/idProducto")]
+        public async Task<List<Producto>> ProductoByID(Guid id_Categoria)
+        {
+            try
+            {
+                var response = await _productoRepository.ProductoByID(id_Categoria);
+                return (response);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

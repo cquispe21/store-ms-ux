@@ -12,5 +12,7 @@ namespace store_mx_us.application.interfaces.repositories
     {
         Task<List<Producto>> ListaProductos();
 
+        Task<List<Producto>> ProductoByID(Guid id_Categoria);
+
     }
 }

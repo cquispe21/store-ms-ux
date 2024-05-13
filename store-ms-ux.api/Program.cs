@@ -10,7 +10,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", builder =>
+    {
+        builder.WithOrigins("http://localhost:4200") // Cambia esto a la URL de tu aplicación React
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
 
 
 builder.Services.AddInfractructure(builder.Configuration);
@@ -22,7 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseAuthorization();
-
+app.UseCors("AllowReactApp");
 app.MapControllers();
 
 app.Run();

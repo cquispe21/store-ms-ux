@@ -30,13 +30,17 @@ namespace store_ms_ux.insfrastructure.data.repositories.Factura
         {
             try
             {
+                
                 var setFactura = new FacturaDbContext
+                
                 {
-                    Idfactura = factura.IdFactura,
+                    Idfactura = Guid.NewGuid(),
                     Idusuario = factura.IdUsuario,
+                    Identificacioncliente = factura.IdentificacionCliente,
                     Correo = factura.Correo,
                     Direcion = factura.Direccion,
                     Razonsocial = factura.RazonSocial,
+                    Fechaemision = DateTime.Now,
                     Totalimporte = factura.TotalImporte,
                 };
 
@@ -48,18 +52,18 @@ namespace store_ms_ux.insfrastructure.data.repositories.Factura
                 {
                     var detalleFacturaSet = new Detallefactura
                     {
-                        Iddetallefactura = detallefactura.IdDetalleFactura,
+                        Iddetallefactura = Guid.NewGuid(),
                         Cantidad = detallefactura.Cantidad,
                         Descripcionproducto = detallefactura.DescripcionProducto,
                         Nombreproducto = detallefactura.NombreProducto,
-                        Idfactura = detallefactura.IdFactura,
+                        Idfactura = setFactura.Idfactura,
                         Preciounitario = detallefactura.PrecioUnitario
                     };
                     _dataContext.Detallefacturas.Add(detalleFacturaSet);
                 }
 
                 await _dataContext.SaveChangesAsync();
-
+          
                 return new CrearResponse();
             }
             catch (Exception ex)
@@ -69,4 +73,8 @@ namespace store_ms_ux.insfrastructure.data.repositories.Factura
         }
 
     }
+
+   
+
+
 }

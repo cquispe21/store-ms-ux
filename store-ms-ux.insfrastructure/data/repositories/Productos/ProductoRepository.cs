@@ -23,6 +23,26 @@ namespace store_ms_ux.insfrastructure.data.repositories.Productos
             _dbContext = dataContext ?? throw new ArgumentNullException(nameof(dataContext));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
+        public async Task<List<Producto>> ProductoByID(Guid id_categoria)
+        {
+            try
+            {
+                var productos = await _dbContext.Productos
+                                                 .Where(p => p.Idcategoria == id_categoria)
+                                                 .ToListAsync();
+                
+                if (productos == null || !productos.Any())
+                {
+                    throw new Exception("No se encontraron productos para la categoría especificada");
+                }
+                
+                return productos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener productos por categoría", ex);
+            }
+        }
 
         public async Task<List<Producto>> ListaProductos()
         {
@@ -36,6 +56,7 @@ namespace store_ms_ux.insfrastructure.data.repositories.Productos
                     Nombre = u.Nombre,
                     Precio = u.Precio,
                     Idcategoria = u.Idcategoria,
+                    Idproducto = u.Idproducto,
                     IdcategoriaNavigation = u.IdcategoriaNavigation
 
                 }
